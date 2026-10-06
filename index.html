@@ -2,175 +2,576 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>JamesPro Academy – Inscription</title>
   <meta name="theme-color" content="#4f46e5" />
+  <meta name="description" content="Inscrivez-vous aux formations en informatique de JamesPro Academy">
   <style>
     :root {
-      --bg: #f3f4fa;
-      --card: #fff;
-      --tx: #1b1f2a;
-      --mut: #667085;
-      --ac: #4f46e5;
+      --bg: #0f1729;
+      --card: #1a2847;
+      --card-light: #243456;
+      --tx: #f8fafc;
+      --tx-secondary: #cbd5e1;
+      --mut: #94a3b8;
+      --ac: #6366f1;
+      --ac-light: #818cf8;
+      --ac-dark: #4f46e5;
       --acx: #fff;
-      --bd: #d9dce5;
-      --sel: #eef0ff;
-      --ok: #067647;
-      --er: #b42318;
+      --bd: #334155;
+      --sel: #312e81;
+      --ok: #10b981;
+      --er: #ef4444;
+      --success-bg: rgba(16, 185, 129, 0.1);
+      --warning-bg: rgba(239, 68, 68, 0.1);
     }
-    * { box-sizing: border-box; }
-    body {
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
       margin: 0;
-      font: 16px/1.45 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--tx);
+      padding: 0;
+      width: 100%;
+      height: 100%;
     }
-    #app { max-width: 560px; margin: 0 auto; padding-bottom: 100px; }
+
+    body {
+      font: 16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, #1a2f5a 100%);
+      color: var(--tx);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #app {
+      position: relative;
+      z-index: 1;
+      max-width: 580px;
+      margin: 0 auto;
+      padding-bottom: 120px;
+    }
+
     header {
       position: sticky;
       top: 0;
-      z-index: 8;
-      background: var(--card);
-      border-bottom: 1px solid var(--bd);
-      padding: 12px 16px;
+      z-index: 20;
+      background: rgba(26, 40, 71, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+      padding: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .brand svg { width: 42px; height: 42px; flex: none; }
-    .brand b { display: block; font-size: 1.08rem; }
-    .brand small { display: block; color: var(--mut); font-size: .75rem; }
-    #dots { display: flex; gap: 6px; margin-top: 8px; }
-    #dots i { flex: 1; height: 5px; border-radius: 999px; background: var(--bd); }
-    #dots i.on { background: var(--ac); }
-    #stp { font-size: .8rem; color: var(--mut); margin-top: 6px; }
-    main { padding: 16px; }
-    h1 { margin: 0 0 12px; font-size: 1.35rem; }
-    label { display: block; font-weight: 700; font-size: .9rem; margin: 14px 0 6px; }
-    input, textarea, button, select { font: inherit; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .brand svg {
+      width: 48px;
+      height: 48px;
+      flex: none;
+      filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.3));
+    }
+
+    .brand b {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--mut);
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    #dots {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    #dots i {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    #dots i.on {
+      background: var(--ac-light);
+      box-shadow: 0 0 12px rgba(129, 140, 248, 0.4);
+    }
+
+    #stp {
+      font-size: 0.8rem;
+      color: var(--mut);
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: 1.65rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--tx), var(--ac-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin: 16px 0 8px;
+      color: var(--tx);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.9;
+    }
+
+    input, textarea, select {
+      font: inherit;
+    }
+
     input, textarea, select {
       width: 100%;
       color: var(--tx);
-      background: var(--card);
-      border: 1px solid var(--bd);
-      border-radius: 12px;
-      padding: 12px;
+      background: rgba(36, 52, 86, 0.6);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      border-radius: 14px;
+      padding: 12px 14px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
+
     input:focus, textarea:focus, select:focus {
-      outline: 2px solid var(--ac);
-      outline-offset: 1px;
+      outline: none;
+      background: rgba(36, 52, 86, 0.9);
+      border-color: var(--ac-light);
+      box-shadow: 0 0 20px rgba(129, 140, 248, 0.3), inset 0 0 10px rgba(99, 102, 241, 0.1);
     }
-    textarea { min-height: 90px; resize: vertical; }
-    .seg { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    input::placeholder, textarea::placeholder {
+      color: rgba(148, 163, 184, 0.6);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .seg {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
     .seg button {
-      flex: 1; min-width: 110px;
-      background: var(--card);
-      border: 1.5px solid var(--bd);
+      flex: 1;
+      min-width: 100px;
+      background: rgba(36, 52, 86, 0.6);
+      border: 2px solid rgba(51, 65, 85, 0.5);
       border-radius: 12px;
-      padding: 10px;
+      padding: 12px 10px;
       cursor: pointer;
       color: var(--tx);
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
+
+    .seg button:hover {
+      background: rgba(36, 52, 86, 0.8);
+      border-color: var(--ac-light);
+    }
+
     .seg button.on {
-      background: var(--sel);
-      border-color: var(--ac);
-      color: var(--tx);
+      background: linear-gradient(135deg, var(--ac-dark), var(--ac-light));
+      border-color: var(--ac-light);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+      color: var(--acx);
     }
+
     .it {
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       width: 100%;
       text-align: left;
-      background: var(--card);
-      border: 1.5px solid var(--bd);
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 10px;
-      cursor: pointer;
-      color: var(--tx);
-      font-weight: 600;
-    }
-    .it.on { background: var(--sel); border-color: var(--ac); }
-    .it span:first-child { font-size: 1.4rem; }
-    .pm {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%;
-      background: var(--card);
-      border: 1.5px solid var(--bd);
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 10px;
-      cursor: pointer;
-      color: var(--tx);
-      font-weight: 600;
-    }
-    .pm.on { background: var(--sel); border-color: var(--ac); }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--bd);
+      background: rgba(36, 52, 86, 0.6);
+      border: 2px solid rgba(51, 65, 85, 0.5);
       border-radius: 14px;
       padding: 14px;
+      margin-top: 10px;
+      cursor: pointer;
+      color: var(--tx);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .it:hover {
+      background: rgba(36, 52, 86, 0.8);
+      border-color: var(--ac-light);
+    }
+
+    .it.on {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(129, 140, 248, 0.2));
+      border-color: var(--ac-light);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .it span:first-child {
+      font-size: 1.6rem;
+      flex: none;
+    }
+
+    .pm {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background: rgba(36, 52, 86, 0.6);
+      border: 2px solid rgba(51, 65, 85, 0.5);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 10px;
+      cursor: pointer;
+      color: var(--tx);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .pm:hover {
+      background: rgba(36, 52, 86, 0.8);
+      border-color: var(--ac-light);
+    }
+
+    .pm.on {
+      background: linear-gradient(135deg, var(--ac-dark), var(--ac-light));
+      border-color: var(--ac-light);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+      color: var(--acx);
+    }
+
+    .card {
+      background: rgba(36, 52, 86, 0.5);
+      border: 1px solid rgba(51, 65, 85, 0.5);
+      border-radius: 16px;
+      padding: 16px;
       margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
+
     .rw {
-      display: flex; justify-content: space-between; gap: 10px;
-      padding: 7px 0; border-bottom: 1px solid var(--bd);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
     }
-    .rw:last-child { border-bottom: none; }
-    .rw span { color: var(--mut); }
-    .note { color: var(--mut); font-size: .85rem; margin-top: 10px; }
-    #err { color: var(--er); font-weight: 700; margin-top: 12px; min-height: 24px; }
-    .ok { color: var(--ok); font-weight: 700; }
-    #bar {
-      position: fixed; left: 0; right: 0; bottom: 0;
-      background: var(--card);
-      border-top: 1px solid var(--bd);
-      display: flex; gap: 10px; justify-content: space-between;
-      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-      z-index: 10;
+
+    .rw:last-child {
+      border-bottom: none;
     }
-    #bar button {
-      flex: 1; max-width: 260px;
-      background: var(--ac); color: var(--acx);
-      border: none; border-radius: 12px; padding: 13px 16px; font-weight: 700; cursor: pointer;
+
+    .rw span {
+      color: var(--mut);
+      font-size: 0.9rem;
     }
-    #bk {
-      background: transparent !important;
-      color: var(--ac) !important;
-      border: 1.5px solid var(--ac) !important;
+
+    .rw b {
+      font-weight: 700;
+      color: var(--ac-light);
+      text-align: right;
     }
-    .btn {
-      display: block; width: 100%;
-      text-align: center; text-decoration: none;
-      border: 1.5px solid var(--ac);
+
+    .note {
+      color: var(--mut);
+      font-size: 0.85rem;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+
+    #err {
+      color: var(--er);
+      font-weight: 700;
+      margin-top: 12px;
+      min-height: 24px;
+      padding: 10px 12px;
+      background: var(--warning-bg);
+      border-radius: 10px;
+      border-left: 3px solid var(--er);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .ok {
+      color: var(--ok);
+      font-weight: 700;
+      padding: 12px;
+      background: var(--success-bg);
       border-radius: 12px;
-      padding: 13px 14px;
-      background: transparent;
-      color: var(--ac);
+      border-left: 3px solid var(--ok);
+    }
+
+    #bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 40, 71, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(51, 65, 85, 0.3);
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      z-index: 19;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    #bar button {
+      flex: 1;
+      max-width: 280px;
+      background: linear-gradient(135deg, var(--ac-dark), var(--ac-light));
+      color: var(--acx);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 16px;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 10px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
     }
+
+    #bar button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    #bar button:active {
+      transform: translateY(0);
+    }
+
+    #bk {
+      background: rgba(36, 52, 86, 0.8) !important;
+      color: var(--ac-light) !important;
+      border: 2px solid var(--ac-light) !important;
+      box-shadow: none !important;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      border: 2px solid var(--ac-light);
+      border-radius: 14px;
+      padding: 14px 16px;
+      background: transparent;
+      color: var(--ac-light);
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: rgba(99, 102, 241, 0.1);
+      transform: translateY(-2px);
+    }
+
     .btn.primary {
-      background: var(--ac); color: var(--acx);
+      background: linear-gradient(135deg, var(--ac-dark), var(--ac-light));
+      color: var(--acx);
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
     }
+
+    .btn.primary:hover {
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
+    .btn.whatsapp {
+      background: linear-gradient(135deg, #25d366, #20ba58);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .btn.whatsapp:hover {
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5);
+      transform: translateY(-3px);
+    }
+
     .tc {
-      display: flex; align-items: center; gap: 12px;
-      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 14px;
     }
+
     .tc img {
-      width: 72px; height: 72px; border-radius: 50%;
-      object-fit: cover; border: 2px solid var(--ac);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--ac-light);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+      flex: none;
     }
-    .tc b { display: block; margin-bottom: 4px; }
-    .tc span { display: block; color: var(--mut); font-size: .8rem; }
-    .hide { display: none !important; }
-    .chk { display: flex; gap: 10px; align-items: flex-start; margin-top: 16px; }
-    .chk input { width: auto; margin-top: 5px; }
-    .tw { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: .8rem; }
-    th, td { padding: 6px 8px; border-bottom: 1px solid var(--bd); text-align: left; white-space: nowrap; }
+
+    .tc b {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 0.95rem;
+    }
+
+    .tc span {
+      display: block;
+      color: var(--mut);
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    .chk {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 16px;
+      padding: 12px;
+      background: rgba(99, 102, 241, 0.05);
+      border-radius: 10px;
+      border-left: 3px solid var(--ac-light);
+    }
+
+    .chk input {
+      width: auto;
+      margin-top: 4px;
+      cursor: pointer;
+    }
+
+    .chk label {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .tw {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid rgba(51, 65, 85, 0.5);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.3);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    th {
+      background: rgba(99, 102, 241, 0.1);
+      font-weight: 700;
+      color: var(--ac-light);
+    }
+
+    tr:hover {
+      background: rgba(99, 102, 241, 0.05);
+    }
+
     @media (max-width: 480px) {
-      #app { padding-bottom: 110px; }
-      .seg button { min-width: 92px; }
+      #app { padding-bottom: 130px; }
+      .seg button { min-width: 90px; }
+      h1 { font-size: 1.4rem; }
+      #bar { gap: 8px; }
+      #bar button { max-width: none; font-size: 0.9rem; }
+      .btn.whatsapp { margin-top: 16px; }
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f8fafc;
+        --card: #e2e8f0;
+        --card-light: #cbd5e1;
+        --tx: #0f172a;
+        --tx-secondary: #334155;
+        --mut: #64748b;
+        --bd: #d1d5db;
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--bg) 0%, #f1f5f9 100%);
+      }
+
+      header {
+        background: rgba(226, 232, 240, 0.95);
+      }
+
+      input, textarea, select, .seg button, .it, .pm, .card {
+        background: rgba(255, 255, 255, 0.8);
+      }
     }
   </style>
 </head>
@@ -181,17 +582,17 @@
         <svg viewBox="0 0 64 64" aria-label="Logo JamesPro Academy">
           <defs>
             <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#4f46e5"/>
+              <stop offset="0" stop-color="#6366f1"/>
               <stop offset="1" stop-color="#06b6d4"/>
             </linearGradient>
           </defs>
-          <rect width="64" height="64" rx="18" fill="#eef2ff"/>
-          <path d="M16 34c0-9 7-16 16-16s16 7 16 16v8H16v-8zm8 0h16v3H24v-3zm2-10h12v4H26v-4z" fill="url(#g)"/>
-          <circle cx="32" cy="48" r="8" fill="#0ea5e9" opacity=".9"/>
+          <rect width="64" height="64" rx="18" fill="url(#g)" opacity="0.9"/>
+          <path d="M16 34c0-9 7-16 16-16s16 7 16 16v8H16v-8zm8 0h16v3H24v-3zm2-10h12v4H26v-4z" fill="#fff"/>
+          <circle cx="32" cy="48" r="8" fill="#06b6d4"/>
         </svg>
         <div>
           <b>JamesPro Academy</b>
-          <small>Formations en informatique</small>
+          <small>📚 Formations en informatique</small>
         </div>
       </div>
       <div id="dots"></div>
@@ -204,10 +605,10 @@
       <div id="err" role="alert"></div>
     </main>
 
-    <section id="adm" class="card hide" style="margin:0 16px 16px;">
-      <b id="cnt">Inscriptions : 0</b>
-      <button class="btn primary" id="csv" type="button">Exporter en CSV</button>
-      <div class="tw">
+    <section id="adm" class="card hide" style="margin:0 20px 20px;">
+      <b id="cnt" style="display:block;margin-bottom:12px;color:var(--ac-light);">Inscriptions : 0</b>
+      <button class="btn primary" id="csv" type="button">📊 Exporter en CSV</button>
+      <div class="tw" style="margin-top:16px;">
         <table>
           <thead>
             <tr><th>Nom</th><th>Tél.</th><th>Formation</th><th>Paiement</th></tr>
@@ -294,18 +695,18 @@
 
       const teacher = () => `
         <div class="card tc">
-          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23eef2ff'/%3E%3Cpath d='M16 34c0-9 7-16 16-16s16 7 16 16v8H16v-8zm8 0h16v3H24v-3zm2-10h12v4H26v-4z' fill='%234f46e5'/%3E%3Ccircle cx='32' cy='48' r='8' fill='%230ea5e9' opacity='.9'/%3E%3C/svg%3E" alt="James, formateur">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='pg' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2306b6d4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='50' cy='50' r='50' fill='url(%23pg)'/%3E%3Ctext x='50' y='65' font-size='50' font-weight='bold' text-anchor='middle' fill='white'%3EJP%3C/text%3E%3C/svg%3E" alt="James, formateur">
           <div>
             <b>James · Pro Designer</b>
-            <span>Entrepreneur digital, designer et formateur, spécialiste en IA &amp; développement.</span>
+            <span>Entrepreneur digital &amp; formateur spécialiste en IA, développement &amp; design.</span>
           </div>
         </div>
       `;
 
       const priceCard = () => `
         <div class="card">
-          <div class="rw"><span>Inscription</span><b>${formatPrice(5000)}</b></div>
-          <div class="rw"><span>Mensualité (2 formations)</span><b>${formatPrice(50000)} / mois</b></div>
+          <div class="rw"><span>📝 Inscription</span><b>${formatPrice(5000)}</b></div>
+          <div class="rw"><span>📅 Mensualité (2 formations)</span><b>${formatPrice(50000)} / mois</b></div>
         </div>
       `;
 
@@ -319,17 +720,17 @@
 
       const recapText = () => {
         const lines = [
-          "JamesPro Academy – Inscription",
-          "Formation(s) : " + S.fm.join(" + "),
-          "Mode : " + S.mode + " (" + S.niveau + ")",
-          "Nom : " + S.nom,
-          "Téléphone : " + S.tel
+          "🎓 JamesPro Academy – Inscription",
+          "📚 Formation(s) : " + S.fm.join(" + "),
+          "🎯 Mode : " + S.mode + " (" + S.niveau + ")",
+          "👤 Nom : " + S.nom,
+          "📱 Téléphone : " + S.tel
         ];
-        if (S.email) lines.push("E-mail : " + S.email);
-        lines.push("Pays : " + S.pays + (S.ville ? " – " + S.ville : ""));
-        lines.push("Paiement : " + S.pay + " (" + S.region + ")" + (S.payNum ? " – n° " + S.payNum : ""));
-        lines.push("Tarif : inscription " + formatPrice(5000) + " + " + formatPrice(50000) + "/mois (2 formations)");
-        if (S.note) lines.push("Message : " + S.note);
+        if (S.email) lines.push("📧 E-mail : " + S.email);
+        lines.push("🌍 Pays : " + S.pays + (S.ville ? " – " + S.ville : ""));
+        lines.push("💳 Paiement : " + S.pay + " (" + S.region + ")" + (S.payNum ? " – n° " + S.payNum : ""));
+        lines.push("💰 Tarif : inscription " + formatPrice(5000) + " + " + formatPrice(50000) + "/mois");
+        if (S.note) lines.push("📝 Message : " + S.note);
         return lines.join("\n");
       };
 
@@ -340,7 +741,7 @@
           .map(([icon, name]) => `
             <button type="button" class="it ${S.fm.includes(name) ? 'on' : ''}" data-a="f" data-v="${escapeHtml(name)}">
               <span>${icon}</span>
-              <span>${name}</span>
+              <div><strong>${name}</strong></div>
             </button>
           `).join("");
       };
@@ -350,18 +751,18 @@
         const s = S.step;
 
         $("dots").innerHTML = [0,1,2,3].map(i => `<i class="${i <= s ? 'on' : ''}"></i>`).join("");
-        $("stp").textContent = S.done ? "Terminé ✓" : "Étape " + (s + 1) + " sur 4";
-        $("ttl").textContent = S.done ? "Merci " + (S.nom.split(" ")[0] || "!") : steps[s];
+        $("stp").textContent = S.done ? "✅ Terminé" : "Étape " + (s + 1) + " sur 4";
+        $("ttl").textContent = S.done ? "🎉 Merci " + (S.nom.split(" ")[0] || "!") : steps[s];
         $("err").textContent = "";
 
         let h = "";
         if (S.done) {
           h = `
             <div class="card">
-              <p class="ok"><b>${S.saved ? "✅ Votre inscription est enregistrée." : "Dernière étape : envoyez ce récapitulatif sur WhatsApp au 697 04 23 03."}</b></p>
-              <p class="note">Votre inscription est prête à être envoyée.</p>
-              <button class="btn" type="button" data-a="cp">📋 Copier le récapitulatif</button>
-              <a class="btn primary" target="_blank" rel="noopener" href="https://wa.me/237697042303?text=${encodeURIComponent(recapText())}">💬 Envoyer sur WhatsApp</a>
+              <p class="ok"><strong>${S.saved ? "✅ Votre inscription est enregistrée !" : "⚠️ Dernière étape : envoyez ce récapitulatif sur WhatsApp"}</strong></p>
+              <p class="note">Cliquez sur le bouton WhatsApp ci-dessous pour finaliser votre inscription.</p>
+              <button class="btn" type="button" data-a="cp">📋 Copier le texte</button>
+              <a class="btn whatsapp" target="_blank" rel="noopener" href="https://wa.me/237697042303?text=${encodeURIComponent(recapText())}">💬 Envoyer sur WhatsApp</a>
               <button class="btn" type="button" data-a="new">➕ Nouvelle inscription</button>
             </div>
           `;
@@ -369,80 +770,79 @@
           h = `
             ${teacher()}
             ${priceCard()}
-            <label>Formations * (2 maximum)</label>
+            <label>🎓 Formations * (2 maximum)</label>
             <input id="q" data-k="_q" placeholder="🔍 Rechercher une formation…" value="${escapeHtml(S._q)}">
             <div id="fl"></div>
-            <label>Mode de suivi</label>
+            <label>📍 Mode de suivi</label>
             <div class="seg">
-              <button type="button" data-a="m" data-v="En ligne" class="${S.mode === 'En ligne' ? 'on' : ''}">En ligne</button>
-              <button type="button" data-a="m" data-v="En présentiel" class="${S.mode === 'En présentiel' ? 'on' : ''}">En présentiel</button>
-              <button type="button" data-a="m" data-v="Hybride" class="${S.mode === 'Hybride' ? 'on' : ''}">Hybride</button>
+              <button type="button" data-a="m" data-v="En ligne" class="${S.mode === 'En ligne' ? 'on' : ''}">💻 En ligne</button>
+              <button type="button" data-a="m" data-v="En présentiel" class="${S.mode === 'En présentiel' ? 'on' : ''}">🏢 Présentiel</button>
+              <button type="button" data-a="m" data-v="Hybride" class="${S.mode === 'Hybride' ? 'on' : ''}">🔄 Hybride</button>
             </div>
-            <label>Niveau</label>
+            <label>📊 Niveau</label>
             <div class="seg">
-              <button type="button" data-a="n" data-v="Débutant" class="${S.niveau === 'Débutant' ? 'on' : ''}">Débutant</button>
-              <button type="button" data-a="n" data-v="Intermédiaire" class="${S.niveau === 'Intermédiaire' ? 'on' : ''}">Intermédiaire</button>
-              <button type="button" data-a="n" data-v="Avancé" class="${S.niveau === 'Avancé' ? 'on' : ''}">Avancé</button>
+              <button type="button" data-a="n" data-v="Débutant" class="${S.niveau === 'Débutant' ? 'on' : ''}">🌱 Débutant</button>
+              <button type="button" data-a="n" data-v="Intermédiaire" class="${S.niveau === 'Intermédiaire' ? 'on' : ''}">📈 Interméd.</button>
+              <button type="button" data-a="n" data-v="Avancé" class="${S.niveau === 'Avancé' ? 'on' : ''}">🚀 Avancé</button>
             </div>
           `;
         } else if (s === 1) {
           h = `
-            <label>Nom et prénom *</label>
-            <input data-k="nom" value="${escapeHtml(S.nom)}" autocomplete="name">
-            <label>Téléphone / WhatsApp *</label>
+            <label>👤 Nom et prénom *</label>
+            <input data-k="nom" value="${escapeHtml(S.nom)}" autocomplete="name" placeholder="Ex: Jean Dupont">
+            <label>📱 Téléphone / WhatsApp *</label>
             <input data-k="tel" type="tel" value="${escapeHtml(S.tel)}" placeholder="Ex: +237 6XX XXX XXX">
-            <label>E-mail</label>
-            <input data-k="email" type="email" value="${escapeHtml(S.email)}" placeholder="Ex: nom@email.com">
-            <label>Pays *</label>
+            <label>📧 E-mail</label>
+            <input data-k="email" type="email" value="${escapeHtml(S.email)}" placeholder="Ex: jean@email.com">
+            <label>🌍 Pays *</label>
             <input data-k="pays" list="pays-list" value="${escapeHtml(S.pays)}" placeholder="Ex: Cameroun">
             <datalist id="pays-list">
               ${PAYS.map(p => `<option value="${escapeHtml(p)}"></option>`).join("")}
             </datalist>
-            <label>Ville</label>
+            <label>🏙️ Ville</label>
             <input data-k="ville" value="${escapeHtml(S.ville)}" placeholder="Ex: Yaoundé">
           `;
         } else if (s === 2) {
           const list = PAYMENTS[S.region] || [];
           h = `
             ${priceCard()}
-            <label>Région</label>
+            <label>🌍 Région</label>
             <div class="seg">
-              <button type="button" data-a="r" data-v="Afrique" class="${S.region === 'Afrique' ? 'on' : ''}">Afrique</button>
-              <button type="button" data-a="r" data-v="Europe" class="${S.region === 'Europe' ? 'on' : ''}">Europe</button>
-              <button type="button" data-a="r" data-v="International" class="${S.region === 'International' ? 'on' : ''}">International</button>
+              <button type="button" data-a="r" data-v="Afrique" class="${S.region === 'Afrique' ? 'on' : ''}">🌍 Afrique</button>
+              <button type="button" data-a="r" data-v="Europe" class="${S.region === 'Europe' ? 'on' : ''}">🇪🇺 Europe</button>
+              <button type="button" data-a="r" data-v="International" class="${S.region === 'International' ? 'on' : ''}">🌐 Inter.</button>
             </div>
+            <label>💳 Mode de paiement</label>
             ${list.map(item => `
               <button type="button" class="pm ${S.pay === item[0] ? 'on' : ''}" data-a="p" data-v="${escapeHtml(item[0])}">
                 ${escapeHtml(item[0])}
               </button>
             `).join("")}
-            <p class="note">Choisissez le mode de paiement adapté à votre pays.</p>
+            <p class="note">✓ Aucun paiement n'est prélevé maintenant. JamesPro Academy vous enverra les instructions après validation.</p>
           `;
           const pi = payInfo();
           if (pi && pi[1]) {
-            h += `<label>Numéro ${escapeHtml(pi[0])} *</label>
-              <input data-k="payNum" type="tel" value="${escapeHtml(S.payNum)}" placeholder="Numéro de paiement">
+            h += `<label>🔐 Numéro ${escapeHtml(pi[0])} *</label>
+              <input data-k="payNum" type="tel" value="${escapeHtml(S.payNum)}" placeholder="Entrez votre numéro">
             `;
           }
-          h += `<p class="note">Aucun paiement n'est prélevé maintenant : JamesPro Academy vous enverra les instructions pour finaliser selon le mode choisi.</p>`;
         } else {
           h = `
             <div class="card">
-              <div class="rw"><span>Formation(s)</span><b>${escapeHtml(S.fm.join(" + "))}</b></div>
-              <div class="rw"><span>Mode</span><b>${escapeHtml(S.mode + " · " + S.niveau)}</b></div>
-              <div class="rw"><span>Nom</span><b>${escapeHtml(S.nom)}</b></div>
-              <div class="rw"><span>Téléphone</span><b>${escapeHtml(S.tel)}</b></div>
-              <div class="rw"><span>E-mail</span><b>${escapeHtml(S.email || "—")}</b></div>
-              <div class="rw"><span>Pays</span><b>${escapeHtml(S.pays + (S.ville ? ", " + S.ville : ""))}</b></div>
-              <div class="rw"><span>Paiement</span><b>${escapeHtml(S.pay + (S.payNum ? " – " + S.payNum : ""))}</b></div>
-              <div class="rw"><span>Tarif</span><b>${escapeHtml(formatPrice(5000) + " + " + formatPrice(50000) + "/mois")}</b></div>
-              <div class="rw"><span>Message</span><b>${escapeHtml(S.note || "—")}</b></div>
+              <div class="rw"><span>📚 Formation(s)</span><b>${escapeHtml(S.fm.join(" + "))}</b></div>
+              <div class="rw"><span>🎯 Mode</span><b>${escapeHtml(S.mode + " · " + S.niveau)}</b></div>
+              <div class="rw"><span>👤 Nom</span><b>${escapeHtml(S.nom)}</b></div>
+              <div class="rw"><span>📱 Téléphone</span><b>${escapeHtml(S.tel)}</b></div>
+              <div class="rw"><span>📧 E-mail</span><b>${escapeHtml(S.email || "—")}</b></div>
+              <div class="rw"><span>🌍 Pays</span><b>${escapeHtml(S.pays + (S.ville ? ", " + S.ville : ""))}</b></div>
+              <div class="rw"><span>💳 Paiement</span><b>${escapeHtml(S.pay + (S.payNum ? " – " + S.payNum : ""))}</b></div>
+              <div class="rw"><span>💰 Tarif</span><b>${escapeHtml(formatPrice(5000) + " + " + formatPrice(50000) + "/mois")}</b></div>
             </div>
-            <label>Note (facultative)</label>
-            <textarea data-k="note" placeholder="Précisez votre besoin ou votre disponibilité…">${escapeHtml(S.note)}</textarea>
+            <label>📝 Message (facultatif)</label>
+            <textarea data-k="note" placeholder="Décrivez vos attentes, votre expérience ou vos disponibilités…">${escapeHtml(S.note)}</textarea>
             <label class="chk">
               <input data-k="ok" type="checkbox" ${S.ok ? "checked" : ""}>
-              J’accepte que mes informations soient utilisées pour le suivi de mon inscription.
+              <label style="cursor: pointer; margin: 0;">J'accepte les conditions et que mes informations soient utilisées pour le suivi de mon inscription.</label>
             </label>
           `;
         }
@@ -452,27 +852,27 @@
 
         $("bar").style.display = S.done ? "none" : "flex";
         $("bk").style.visibility = S.step > 0 ? "visible" : "hidden";
-        $("nx").textContent = S.step === 3 ? "Confirmer ✓" : "Suivant →";
+        $("nx").textContent = S.step === 3 ? "✅ Confirmer" : "Suivant →";
       };
 
       const check = () => {
         if (S.step === 0) {
-          if (!S.fm.length) return "Choisissez au moins une formation.";
-          if (!S.mode) return "Choisissez le mode de suivi.";
+          if (!S.fm.length) return "❌ Choisissez au moins une formation.";
+          if (!S.mode) return "❌ Choisissez le mode de suivi.";
           return "";
         }
         if (S.step === 1) {
-          if (!S.nom.trim() || !S.tel.trim() || !S.pays.trim()) return "Nom, téléphone et pays sont obligatoires.";
-          if (S.email && !/^\S+@\S+\.\S+$/.test(S.email)) return "Adresse e-mail invalide.";
+          if (!S.nom.trim() || !S.tel.trim() || !S.pays.trim()) return "❌ Nom, téléphone et pays sont obligatoires.";
+          if (S.email && !/^\S+@\S+\.\S+$/.test(S.email)) return "❌ Adresse e-mail invalide.";
           return "";
         }
         if (S.step === 2) {
           const p = payInfo();
-          if (!p) return "Choisissez un mode de paiement.";
-          if (p[1] && !S.payNum.trim()) return "Entrez votre numéro " + p[0] + ".";
+          if (!p) return "❌ Choisissez un mode de paiement.";
+          if (p[1] && !S.payNum.trim()) return "❌ Entrez votre numéro " + p[0] + ".";
           return "";
         }
-        if (!S.ok) return "Cochez la case d'acceptation.";
+        if (!S.ok) return "❌ Cochez la case d'acceptation.";
         return "";
       };
 
@@ -510,7 +910,7 @@
       const exportCSV = () => {
         const rows = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
         if (!rows.length) {
-          $("err").textContent = "Aucune inscription enregistrée.";
+          $("err").textContent = "❌ Aucune inscription enregistrée.";
           return;
         }
         const header = ["date","formation","mode","niveau","nom","tel","email","pays","ville","region","pay","payNum","note"];
@@ -545,7 +945,7 @@
             S.fm.splice(i, 1);
           } else {
             if (S.fm.length >= 2) {
-              $("err").textContent = "Vous pouvez choisir 2 formations au maximum.";
+              $("err").textContent = "❌ Vous pouvez choisir 2 formations au maximum.";
               return;
             }
             S.fm.push(v);
@@ -573,9 +973,10 @@
           const ok = document.execCommand("copy");
           document.body.removeChild(ta);
           if (ok) {
-            t.textContent = "Copié ✓";
+            t.textContent = "✅ Copié !";
+            setTimeout(() => { t.textContent = "📋 Copier le texte"; }, 2000);
           } else {
-            t.textContent = "Sélectionnez le texte ci-dessus pour copier.";
+            t.textContent = "Sélectionnez ci-dessus.";
           }
         }
         if (a === "new") {
